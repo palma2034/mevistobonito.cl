@@ -55,10 +55,50 @@
             con mucho amor y CSS vintage
         </p>
     </div>
-    <marquee direction="right" scrollamount="5">💖 ⭐ 💝 ⭐ 💖 ⭐ 💝</marquee>
+    <marquee direction="right" scrollamount="5">💖 ⭐ 💕 ⭐ 💖 ⭐ 💕</marquee>
     <img src="https://web.archive.org/web/19961219003318im_/http://www.geocities.com/EnchantedForest/1141/under.gif">
     <div style="position: fixed; bottom: 10px; right: 10px;">
         <span style="font-size: 12px; color: white;">Mejor visto en Internet Explorer</span>
     </div>
+    
+    <!-- Reproductor de audio -->
+    <audio id="music" autoplay loop>
+        <source src="https://github.com/palma2034/mevistobonito.cl/blob/main/Ikayri%20x%20YungShori%20x%20Cherry%20-%20BOLSA%20EN%20LA%20CARA%20(mp3cut.net).mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let audio = document.getElementById('music');
+            
+            // Intenta reproducir el audio automáticamente
+            let playPromise = audio.play();
+    
+            if (playPromise !== undefined) {
+                playPromise.catch(function (error) {
+                    console.log("Reproducción automática bloqueada, esperando interacción del usuario.");
+                    // Muestra un botón para activar manualmente el audio
+                    let playButton = document.createElement("button");
+                    playButton.innerHTML = "🎵 Activar sonido";
+                    playButton.style.position = "fixed";
+                    playButton.style.bottom = "20px";
+                    playButton.style.left = "50%";
+                    playButton.style.transform = "translateX(-50%)";
+                    playButton.style.padding = "10px";
+                    playButton.style.fontSize = "16px";
+                    playButton.style.background = "yellow";
+                    playButton.style.border = "2px solid black";
+                    playButton.style.cursor = "pointer";
+    
+                    document.body.appendChild(playButton);
+    
+                    playButton.addEventListener("click", function () {
+                        audio.play();
+                        playButton.remove(); // Elimina el botón una vez que el audio ha sido activado
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
